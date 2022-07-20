@@ -1,0 +1,752 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions namespace="http://www.omg.org/spec/DMN/20151101/ch11example.xml" xmlns:ex="http://www.omg.org/spec/DMN/20151101/ch11example.xml" name="Loan Origination Decision Model" id="LoanOriginationModel" xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd">
+ <inputData id="InputData_1rawv0l" name="Input" />
+  <decision id="Decision_1m02get" name="OE Transaction Type">
+    <informationRequirement id="InformationRequirement_081rums">
+      <requiredInput href="#InputData_1rawv0l" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_0jq41zi" hitPolicy="FIRST">
+      <input id="InputClause_0ksvszw">
+        <inputExpression id="LiteralExpression_177b5gd" typeRef="string">
+          <text>Input.order.Loan.LoanType</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_1rqnkdq" label="OE Transaction Type_Output" name="OE Transaction Type_Output" typeRef="string" />
+      <output id="OutputClause_1mtbzml" label="GI Result" name="GI Result" typeRef="string" />
+      <output id="OutputClause_1j2cy2c" label="PI Result" name="PI Result" typeRef="string" />
+      <rule id="DecisionRule_0lhk9hs">
+        <inputEntry id="UnaryTests_03fuvht">
+          <text>"Refinance","Equity","Purchase","PurchasePilot","PortofolioMonitoring"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_133thnm">
+          <text>"Pass"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_18njc4p">
+          <text>"-"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0xnvcb2">
+          <text>"-"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1f4bxat">
+        <inputEntry id="UnaryTests_1ap1mdc">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1h0o1x3">
+          <text>"Fail"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0z8stab">
+          <text>"-"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1npmf1s">
+          <text>"-"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="Decision_0qgrkqq" name="OE Loan Amount">
+    <informationRequirement id="InformationRequirement_018d1ce">
+      <requiredInput href="#InputData_1rawv0l" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_034m11i" hitPolicy="FIRST">
+      <input id="InputClause_1l8ui6r">
+        <inputExpression id="LiteralExpression_0pfhjup" typeRef="string">
+          <text>Input.order.Loan.LoanType</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0vp1kcs">
+        <inputExpression id="LiteralExpression_0orl6on" typeRef="integer">
+          <text>Input.order.Loan.LoanAmount</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_0zz3h9r" label="OE Loan Amount_Output" name="OE Loan Amount_Output" typeRef="string" />
+      <output id="OutputClause_1dd1i4t" label="GI Result" name="GI Result" typeRef="string" />
+      <output id="OutputClause_09l3qm3" label="PI Result" name="PI Result" typeRef="string" />
+      <rule id="DecisionRule_1e9fuql">
+        <inputEntry id="UnaryTests_1m0rudc">
+          <text>"Refinance","Equity","PurchasePilot","PortofolioMonitoring"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0p1sg4e">
+          <text>[0..2000000]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0hk4xhd">
+          <text>"Pass"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_157p76k">
+          <text>"-"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0mutvcb">
+          <text>"-"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_07dctzm">
+        <inputEntry id="UnaryTests_1gn1wu8">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_17oj2zw">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1j7xp31">
+          <text>"Fail"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1dxx8x6">
+          <text>"-"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1qvkgw4">
+          <text>"-"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="Decision_0f3s5r6" name="OE Cash-Out Amount">
+    <informationRequirement id="InformationRequirement_0l7q6m5">
+      <requiredInput href="#InputData_1rawv0l" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_0lf9gp3" hitPolicy="FIRST">
+      <input id="InputClause_154dtth">
+        <inputExpression id="LiteralExpression_0k0tzu2" typeRef="string">
+          <text>Input.order.Loan.LoanType</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0mipy43">
+        <inputExpression id="LiteralExpression_1hzmhlq" typeRef="integer">
+          <text>Input.order.Loan.CashOutAmount</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_0yhcr4r" label="OE Cash-Out Amount_Output" name="OE Cash-Out Amount_Output" typeRef="string" />
+      <output id="OutputClause_0eqmqtc" label="GI Result" name="GI Result" typeRef="string" />
+      <output id="OutputClause_0nkvgq7" label="PI Result" name="PI Result" typeRef="string" />
+      <rule id="DecisionRule_0o1ok0r">
+        <inputEntry id="UnaryTests_19olgzp">
+          <text>"Refinance","Equity","PurchasePilot","PortofolioMonitoring"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_08lon4i">
+          <text>[0..2000000]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1concwx">
+          <text>"Pass"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1rx52o9">
+          <text>"-"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_03fxhom">
+          <text>"-"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_11pjuek">
+        <inputEntry id="UnaryTests_1bpr0kw">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ahbrtm">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0djpxoo">
+          <text>"Fail"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0t3b159">
+          <text>"-"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1ixxx95">
+          <text>"-"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="Decision_13iqers" name="OE Product Type">
+    <informationRequirement id="InformationRequirement_03782ig">
+      <requiredInput href="#InputData_1rawv0l" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_1o170ws" hitPolicy="FIRST">
+      <input id="InputClause_09dc2gt">
+        <inputExpression id="LiteralExpression_1ecqw35" typeRef="string">
+          <text>Input.order.Loan.LoanType</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0alzpo2">
+        <inputExpression id="LiteralExpression_01s8l3g" typeRef="string">
+          <text>Input.order.ProductType</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_1eg9p7y" label="OE Product Type_Output" name="OE Product Type_Output" typeRef="string" />
+      <output id="OutputClause_0q86f2n" label="GI Result" name="GI Result" typeRef="string" />
+      <output id="OutputClause_1av6wke" label="PI Result" name="PI Result" typeRef="string" />
+      <rule id="DecisionRule_0cfe8n3">
+        <inputEntry id="UnaryTests_0t66j52">
+          <text>"Refinance","Equity","PurchasePilot","PortofolioMonitoring"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1cpyky6">
+          <text>"ALTA Short Form Expanded Coverage Residential Loan Policy",
+"ALTA Short Form Residential Loan Policy",
+"ALTA Short Form Residential Loan Policy - 2006",
+"ALTA Short Form Residential Loan Policy - Extended",
+"Short Form Commitment",
+"Super Eagle",
+"Super Eagle-24 mo",
+"Texas Short Form Mortgagee Policy (T2R)",
+"EquiSmart",
+"ALTA Res Ltd Cov Jr Loan Policy (Express)",
+"ShortFormLoanPolicy",
+"Junior Loan Policy",
+"Owners Policy"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0p3vj7p">
+          <text>"Pass"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_15husv7">
+          <text>"-"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0yu96zd">
+          <text>"-"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_019tbzl">
+        <inputEntry id="UnaryTests_0mgjm49">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1i84jwq">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1e6bvlz">
+          <text>"Fail"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0ueto5y">
+          <text>"-"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0tosehq">
+          <text>"-"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="Decision_1c4o0vt" name="OE Purchase Amount">
+    <informationRequirement id="InformationRequirement_0dxe5pv">
+      <requiredInput href="#InputData_1rawv0l" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_0q1h38f" hitPolicy="FIRST">
+      <input id="InputClause_0c3jfg8">
+        <inputExpression id="LiteralExpression_0p3lguk" typeRef="string">
+          <text>Input.order.Loan.LoanType</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_17l6f9f">
+        <inputExpression id="LiteralExpression_1bqgxa7" typeRef="integer">
+          <text>Input.order.Loan.SaleAmount</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_1uuxyzy" label="OE Purchase Amount_Output" name="OE Purchase Amount_Output" typeRef="string" />
+      <output id="OutputClause_1avjiac" label="GI Result" name="GI Result" typeRef="string" />
+      <output id="OutputClause_00r35bv" label="PI Result" name="PI Result" typeRef="string" />
+      <rule id="DecisionRule_0q2mapf">
+        <inputEntry id="UnaryTests_1agmjrz">
+          <text>"Purchase"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0stukfi">
+          <text>[0..2000000]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1bay1x3">
+          <text>"Pass"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1pplbmx">
+          <text>"-"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1vb4fxe">
+          <text>"-"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1ukpt9q">
+        <inputEntry id="UnaryTests_1riwj1v">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1hfdwr0">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_16ctuk6">
+          <text>"Fail"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_198rulh">
+          <text>"-"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0fgaolg">
+          <text>"-"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="Decision_0tnsk50" name="OE Purchase Property State/County Inclusions">
+    <informationRequirement id="InformationRequirement_1dcfycv">
+      <requiredInput href="#InputData_1rawv0l" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_01z0jcj" hitPolicy="FIRST">
+      <input id="InputClause_1vk4n5y">
+        <inputExpression id="LiteralExpression_1s5fu16" typeRef="string">
+          <text>Input.order.SubjectProperty.County</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_163vfn8">
+        <inputExpression id="LiteralExpression_0siubk5" typeRef="string">
+          <text>Input.order.SubjectProperty.State</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_1j74byh" label="OE Purchase Property State_County Inclusions_Output" name="OE Purchase Property State_County Inclusions_Output" typeRef="string" />
+      <output id="OutputClause_1hxrd73" label="GI Result" name="GI Result" typeRef="string" />
+      <output id="OutputClause_04btqay" label="PI Result" name="PI Result" typeRef="string" />
+      <rule id="DecisionRule_0llvfqq">
+        <inputEntry id="UnaryTests_1w1g6f8">
+          <text>"Los Angeles",
+"Orange",
+"Riverside,",
+"San Bernardino,",
+"San Diego",
+"Ventura",
+"Sacramento",
+"Nevada"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_151xci8">
+          <text>"CA"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1jcklop">
+          <text>"Pass"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_171u3rr">
+          <text>"-"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1d0zfei">
+          <text>"-"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0kg67nj">
+        <inputEntry id="UnaryTests_1bb2txo">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_13kwzyw">
+          <text>"AZ"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0hxrkio">
+          <text>"Pass"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_05oq5wu">
+          <text>"-"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0y14bdj">
+          <text>"-"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1g6s2xw">
+        <inputEntry id="UnaryTests_0ki31bc">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ef0oyy">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1h54tmm">
+          <text>"Fail"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_17u3a3w">
+          <text>"-"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0ta2zbx">
+          <text>"-"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="Decision_0k7fn2k" name="OE Multiple Parcels">
+    <informationRequirement id="InformationRequirement_0k9h8md">
+      <requiredInput href="#InputData_1rawv0l" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_0cut2tq" hitPolicy="FIRST">
+      <input id="InputClause_0w90v36">
+        <inputExpression id="LiteralExpression_0jqrdm7" typeRef="boolean">
+          <text>Input.order.SubjectProperty.ParcelNumbers_Empty_Null</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0vyz8u6">
+        <inputExpression id="LiteralExpression_0kabg37" typeRef="integer">
+          <text>Input.order.SubjectProperty.ParcelNumbers_Count</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_1lnj0do" label="OE Multiple Parcels_Output" name="OE Multiple Parcels_Output" typeRef="string" />
+      <output id="OutputClause_0qtsmur" label="GI Result" name="GI Result" typeRef="string" />
+      <output id="OutputClause_1j2a9ei" label="PI Result" name="PI Result" typeRef="string" />
+      <rule id="DecisionRule_02i64tc">
+        <inputEntry id="UnaryTests_12xkvex">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1vy8sb7">
+          <text>&gt; 1</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0tljf6l">
+          <text>"Pass"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0xsdz5h">
+          <text>"-"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0w6v41p">
+          <text>"-"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1horti1">
+        <inputEntry id="UnaryTests_0cd9p88">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_057k1f4">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0xo832d">
+          <text>"Fail"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0o30yct">
+          <text>"-"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_15v0tdm">
+          <text>"-"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="Decision_05ockjn" name="OE Property State_County Exclusions">
+    <informationRequirement id="InformationRequirement_0vx4nsu">
+      <requiredInput href="#InputData_1rawv0l" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_08jpgbq" hitPolicy="FIRST">
+      <input id="InputClause_1llsup3">
+        <inputExpression id="LiteralExpression_1s9awsc" typeRef="string">
+          <text>Input.order.SubjectProperty.State</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_12nsq4t">
+        <inputExpression id="LiteralExpression_0ciadhv" typeRef="string">
+          <text>Input.order.SubjectProperty.County_State</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_0a135uq" label="OE Property State_County Exclusions_Output" name="OE Property State_County Exclusions_Output" typeRef="string" />
+      <output id="OutputClause_1eva6wx" label="GI Result" name="GI Result" typeRef="string" />
+      <output id="OutputClause_06ngumf" label="PI Result" name="PI Result" typeRef="string" />
+      <rule id="DecisionRule_13r2pk4">
+        <inputEntry id="UnaryTests_0xbuj5x">
+          <text>not("AK",
+"AR",
+"DE",
+"HI",
+"ID",
+"LA",
+"MO",
+"MT",
+"NM",
+"ND",
+"VT",
+"WV",
+"WY",
+"SD",
+"RI",
+"NY")</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1opgupx">
+          <text>not("Pima, AZ",
+"Elliot, KY",
+"Esmeralda, NV",
+"Grant, OR",
+"Harney, OR",
+"Jefferson, OR",
+"Malheur, OR",
+"Asotin, WA",
+"Klickitat, WA",
+"Pacific, WA",
+"Wahkiakum, WA",
+"Anderson, TX",
+"Andrews, TX",
+"Angelina, TX",
+"Aransas, TX",
+"Archer, TX",
+"Armstrong, TX",
+"Atascosa, TX",
+"Austin, TX",
+"Bailey, TX",
+"Bandera, TX",
+"Bastrop, TX",
+"Baylor, TX",
+"Bee, TX",
+"Bell, TX",
+"Blanco, TX",
+"Borden, TX",
+"Bosque, TX",
+"Bowie, TX",
+"Brazos, TX",
+"Brewster, TX",
+"Briscoe, TX",
+"Brooks, TX",
+"Brown, TX",
+"Burleson, TX",
+"Burnet, TX",
+"Caldwell, TX",
+"Calhoun, TX",
+"Callahan, TX",
+"Cameron, TX",
+"Camp, TX",
+"Carson, TX",
+"Cass, TX",
+"Castro, TX",
+"Cherokee, TX",
+"Childress, TX",
+"Clay, TX",
+"Cochran, TX",
+"Coke, TX",
+"Coleman, TX",
+"Collingsworth, TX",
+"Colorado, TX",
+"Comanche, TX",
+"Concho, TX",
+"Cooke, TX",
+"Coryell, TX",
+"Cottle, TX",
+"Crane, TX",
+"Crockett, TX",
+"Crosby, TX",
+"Culberson, TX",
+"Dallam, TX",
+"Dawson, TX",
+"De Witt, TX",
+"Deaf Smith, TX",
+"Delta, TX",
+"Dickens, TX",
+"Dimmit, TX",
+"Donley, TX",
+"Duval, TX",
+"Eastland, TX",
+"Ector, TX",
+"Edwards, TX",
+"Ellis, TX",
+"Erath, TX",
+"Falls, TX",
+"Fannin, TX",
+"Fayette, TX",
+"Fisher, TX",
+"Floyd, TX",
+"Foard, TX",
+"Franklin, TX",
+"Freestone, TX",
+"Frio, TX",
+"Gaines, TX",
+"Garza, TX",
+"Gillespie, TX",
+"Glasscock, TX",
+"Goliad, TX",
+"Gonzales, TX",
+"Gray, TX",
+"Grayson, TX",
+"Gregg, TX",
+"Grimes, TX",
+"Hale, TX",
+"Hall, TX",
+"Hamilton, TX",
+"Hansford, TX",
+"Hardeman, TX",
+"Hardin, TX",
+"Harrison, TX",
+"Hartley, TX",
+"Haskell, TX",
+"Hays, TX",
+"Hemphill, TX",
+"Henderson, TX",
+"Hidalgo, TX",
+"Hill, TX",
+"Hockley, TX",
+"Hood, TX",
+"Hopkins, TX",
+"Houston, TX",
+"Howard, TX",
+"Hudspeth, TX",
+"Hunt, TX",
+"Hutchinson, TX",
+"Irion, TX",
+"Jack, TX",
+"Jackson, TX",
+"Jasper, TX",
+"Jeff Davis, TX",
+"Jim Hogg, TX",
+"Jim Wells, TX",
+"Jones, TX",
+"Karnes, TX",
+"Kenedy, TX",
+"Kent, TX",
+"Kerr, TX",
+"Kimble, TX",
+"King, TX",
+"Kinney, TX",
+"Kleberg, TX",
+"Knox, TX",
+"La Salle, TX",
+"Lamar, TX",
+"Lamb, TX",
+"Lampasas, TX",
+"Lavaca, TX",
+"Lee, TX",
+"Leon, TX",
+"Limestone, TX",
+"Lipscomb, TX",
+"Live Oak, TX",
+"Llano, TX",
+"Loving, TX",
+"Lubbock, TX",
+"Lynn, TX",
+"Madison, TX",
+"Marion, TX",
+"Martin, TX",
+"Mason, TX",
+"Matagorda, TX",
+"Maverick, TX",
+"Mcculloch, TX",
+"Mcmullen, TX",
+"Menard, TX",
+"Midland, TX",
+"Milam, TX",
+"Mills, TX",
+"Mitchell, TX",
+"Montague, TX",
+"Moore, TX",
+"Morris, TX",
+"Motley, TX",
+"Nacogdoches, TX",
+"Navarro, TX",
+"Newton, TX",
+"Nolan, TX",
+"Nueces, TX",
+"Ochiltree, TX",
+"Oldham, TX",
+"Orange, TX",
+"Palo Pinto, TX",
+"Panola, TX",
+"Parmer, TX",
+"Pecos, TX",
+"Polk, TX",
+"Potter, TX",
+"Presidio, TX",
+"Rains, TX",
+"Randall, TX",
+"Reagan, TX",
+"Real, TX",
+"Red River, TX",
+"Reeves, TX",
+"Refugio, TX",
+"Roberts, TX",
+"Robertson, TX",
+"Rockwall, TX",
+"Runnels, TX",
+"Rusk, TX",
+"Sabine, TX",
+"San Augustine, TX",
+"San Jacinto, TX",
+"San Patricio, TX",
+"San Saba, TX",
+"Schleicher, TX",
+"Scurry, TX",
+"Shackelford, TX",
+"Shelby, TX",
+"Sherman, TX",
+"Somervell, TX",
+"Starr, TX",
+"Stephens, TX",
+"Sterling, TX",
+"Stonewall, TX",
+"Sutton, TX",
+"Swisher, TX",
+"Taylor, TX",
+"Terrell, TX",
+"Terry, TX",
+"Throckmorton, TX",
+"Titus, TX",
+"Tom Green, TX",
+"Travis, TX",
+"Trinity, TX",
+"Tyler, TX",
+"Upshur, TX",
+"Upton, TX",
+"Uvalde, TX",
+"Val Verde, TX",
+"Van Zandt, TX",
+"Victoria, TX",
+"Walker, TX",
+"Waller, TX",
+"Ward, TX",
+"Washington, TX",
+"Webb, TX",
+"Wharton, TX",
+"Wheeler, TX",
+"Wichita, TX",
+"Wilbarger, TX",
+"Willacy, TX",
+"Williamson, TX",
+"Wilson, TX",
+"Winkler, TX",
+"Wise, TX",
+"Wood, TX",
+"Yoakum, TX",
+"Young, TX",
+"Zapata, TX",
+"Zavala, TX",
+"Baker, OR",
+"Clatsop, OR",
+"Columbia, OR",
+"Coos, OR",
+"Crook, OR",
+"Curry, OR",
+"Hood River, OR",
+"Klamath, OR",
+"Lincoln, OR",
+"Morrow, OR",
+"Umatilla, OR",
+"Union, OR",
+"Wallowa, OR",
+"Yamhill, OR",
+"Adams, WA",
+"Benton, WA",
+"Clallam, WA",
+"Columbia, WA",
+"Cowlitz, WA",
+"Ferry, WA",
+"Franklin, WA",
+"Grant, WA",
+"Grays Harbor, WA",
+"Island, WA",
+"Jefferson, WA",
+"Lewis, WA",
+"Mason, WA",
+"Okanogan, WA",
+"San Juan, WA",
+"Skagit, WA",
+"Skamania, WA",
+"Stevens, WA",
+"Walla Walla, WA",
+"Whatcom, WA",
+"Whitman, WA")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0yh9ydk">
+          <text>"Pass"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1x33dym">
+          <text>"-"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0n9ha3a">
+          <text>"-"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0wphfch">
+        <inputEntry id="UnaryTests_16485q5">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jle8ut">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0vpf9s9">
+          <text>"Fail"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_05pkuxf">
+          <text>"-"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1a7wb9s">
+          <text>"-"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  </definitions>
